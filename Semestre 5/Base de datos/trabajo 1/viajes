@@ -1,0 +1,52 @@
+CREATE DATABASE reservacion_viajes;
+use reservacion_viajes;
+
+CREATE TABLE cliente(
+	id_cliente int(100) PRIMARY KEY,
+    nombre varchar(50),
+    correo_cliente varchar(120),
+    telefono int(12),
+    direccion varchar(40)
+);
+
+CREATE TABLE hotel(
+	id_hotel int(100) PRIMARY KEY,
+    nombre varchar(50),
+    direccion varchar(40),
+    pais varchar(58),
+    ciudad  varchar(26),
+    telefono int(12),
+    correo_hotel varchar(120),
+    precio int(12)   
+);
+
+CREATE TABLE reserva(
+    id_reserva int(100) PRIMARY KEY,
+    id_cliente int(100),
+    id_hotel int(100),
+    fecha_reserva date,
+	total int(10),
+    FOREIGN key (id_cliente) REFERENCES cliente(id_cliente),
+    FOREIGN key (id_hotel) REFERENCES hotel(id_hotel)
+);
+
+CREATE TABLE vuelo(
+	id_vuelo int(100) PRIMARY KEY,
+    origen varchar(50),
+    destino varchar(40),
+    fecha_salida varchar(10),
+    fecha_llegada varchar(10),
+    hora_saldia varchar(10),
+    hora_llegada varchar(10),
+    precio_vuelo int(12)   
+);
+
+CREATE TABLE cliente_vuelo(
+    id_cliente_vuelo int(100) PRIMARY KEY,
+    id_cliente int(100),
+    id_vuelo int(100),
+    fecha_reserva varchar(10),
+	hora_reserva varchar(10),
+    FOREIGN key (id_cliente) REFERENCES cliente(id_cliente),
+    FOREIGN key (id_vuelo) REFERENCES vuelo(id_vuelo)
+);
